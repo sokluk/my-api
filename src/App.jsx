@@ -5,13 +5,13 @@ function App() {
   const [greeting, setGreeting] = useState("");
 
   useEffect(() => {
-    fetch("https://my-api.onrender.com")
+    fetch("https://my-api-i81b.onrender.com/")
       .then((res) => res.json())
       .then((data) => setMessage(data.message));
   }, []);
 
   const getGreeting = async () => {
-    const res = await fetch("https://my-api.onrender.com/api/greet/React Developer");
+    const res = await fetch("https://my-api-i81b.onrender.com//api/greet/React Developer");
     const data = await res.json();
     setGreeting(data.greeting);
   };
