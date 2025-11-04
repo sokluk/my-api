@@ -11,7 +11,7 @@ function App() {
   }, []);
 
   const getGreeting = async () => {
-    const res = await fetch("https://my-api-i81b.onrender.com//api/greet/React Developer");
+    const res = await fetch("https://my-api-i81b.onrender.com/api/greet/React Developer");
     const data = await res.json();
     setGreeting(data.greeting);
   };
