@@ -23,6 +23,31 @@ app.get("/api/greet/:name", (req, res) => {
   res.json({ greeting: `Hello, ${name}! 👋` });
 });
 
+
+app.get("/api/check-db", async (req, res) => {
+  try {
+    const state = mongoose.connection.readyState;
+
+    /*
+      0 = disconnected
+      1 = connected
+      2 = connecting
+      3 = disconnecting
+    */
+    let status = "unknown";
+    if (state === 1) status = "connected";
+    else if (state === 2) status = "connecting";
+    else if (state === 0) status = "disconnected";
+    else if (state === 3) status = "disconnecting";
+
+    res.json({ mongoState: status });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Error checking MongoDB connection" });
+  }
+});
+
+
 // Start server
 mongoose
   .connect(process.env.MONGO_URI)
